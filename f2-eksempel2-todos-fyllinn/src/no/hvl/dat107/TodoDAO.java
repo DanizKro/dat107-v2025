@@ -6,22 +6,22 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 public class TodoDAO {
 	
 	private EntityManagerFactory emf 
 			= Persistence.createEntityManagerFactory("todoPersistenceUnit", 
-			Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
+			//Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
 	
 	/* --------------------------------------------------------------------- */
 
-	public Object/*???*/ finnAlleTodos(/*???*/) {
+	public Todo finnAlleTodos(int id){
 		
 		EntityManager em = emf.createEntityManager();
-		
+
 		try {
-			/*???*/
-			return null /*???*/; 
+			return em.find(Todo.class, id);
 
 		} finally {
 			em.close();
@@ -30,13 +30,12 @@ public class TodoDAO {
 
 	/* --------------------------------------------------------------------- */
 
-	public Object/*???*/ finnTodoMedPk(/*???*/) {
+	public Todo finnTodoMedPk(int id) {
 		
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			/*???*/
-			return null /*???*/; 
+			return em.find(Todo.class, id);
 
 		} finally {
 			em.close();
@@ -45,12 +44,16 @@ public class TodoDAO {
 
 	/* --------------------------------------------------------------------- */
 
-	public Object/*???*/ finnTodoMedTekst(/*???*/) {
+	public Todo finnTodoMedTekst(String tekst) {
+		
 		EntityManager em = emf.createEntityManager();
 		
+		String sporring = "select t from Todo as t where t.tekst = :tekst";
+		
 		try {
-			/*???*/
-			return null /*???*/; 
+			TypedQuery<Todo> query = em.createQuery(sporring, Todo.class);
+			query.setParameter("tekst", tekst);
+			return query.getSingleResult();
 			
 		} finally {
 			em.close();
@@ -73,16 +76,14 @@ public class TodoDAO {
 
 	/* --------------------------------------------------------------------- */
 
-	public Object/*???*/ lagreNyTodo(/*???*/) {
+	public void lagreNyTodo(Todo nyTodo) {
 		
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 
 		try {
 			tx.begin();
-			
-			/*???*/
-			
+			em.persist(nyTodo);
 			tx.commit();
 			
 		} catch (Throwable e) {
@@ -93,8 +94,7 @@ public class TodoDAO {
 		} finally {
 			em.close();
 		}
-		
-		return null /*???*/; 
+		//Kan returnere PK
 	}
 
 	/* --------------------------------------------------------------------- */

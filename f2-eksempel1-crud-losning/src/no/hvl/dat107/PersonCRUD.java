@@ -4,6 +4,8 @@ import java.util.List;
 
 public interface PersonCRUD {
 	
+	// CRUD = Create-Read-Update-Delete
+	
 	/** Create - Opprette ny person-rad i databasen. */
 	void lagrePerson(Person p);	
 	

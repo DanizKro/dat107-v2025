@@ -9,8 +9,7 @@ import jakarta.persistence.Table;
 //@NamedQuery(name = "hentAllePersoner", query ="SELECT p FROM Person as p order by p.id")
 public class Person {
 	
-	@Id
-	private Integer id;
+	@Id private Integer id;
 	private String navn;
 	
 	public Person() {}

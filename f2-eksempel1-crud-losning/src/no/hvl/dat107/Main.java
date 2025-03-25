@@ -37,5 +37,7 @@ public class Main {
 		System.out.println("\n--- "+ tekst +" ---");
 		personer.forEach(System.out::println);		
 	}
+	
+	// for å hente Tabell i et skjema i SQL - SELECT * FROM forelesning2_person.person
 
 }

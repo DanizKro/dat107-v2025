@@ -25,11 +25,20 @@ public class Main {
 
 		// a) Hente ut alle todos 
 		// b) Hente ut todo med pk=2
+		Todo todo2 = todoDAO.finnTodoMedPk(2);
+		System.out.print(todo2);
+		
 		// c.i)   Hente ut SINGLE todo med tekst="Handle mat" 
+		Todo todoHandle = todoDAO.finnTodoMedTekst(2);
+		System.out.print(todoHandle);
+		
 		// c.ii)  Hente ut SINGLE todo med tekst="Vaske bilen" (som ikke finnes) 
 		// c.iii) Hente ut LISTE av todos med tekst="Handle mat" 
 		// c.iv)  Hente ut LISTE av todos med tekst="Vaske bilen" (som ikke finnes)
 		// d) Legge til en ny todo med pk=4
+		
+		Todo NyTodo = new Todo(4, "Gjøre lekser");
+		todoDAO.lagreNyTodo(NyTodo);
 		// e) Slette todo med pk=4
 		// f) Endre tekst på todo med pk=3
 		// g) Endre tekst på todo med pk=3, alternativ måte

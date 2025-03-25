@@ -56,7 +56,7 @@ public class TodoDAOUsingJPA implements TodoDAO {
 		
 		try {
 			TypedQuery<Todo> query = em.createQuery(
-					"select t from Todo t where t.tekst like :tekst", Todo.class);
+					"select t from Todo as t where t.tekst like :tekst", Todo.class);
 			query.setParameter("tekst", tekst);
 
 			return query.getSingleResult(); // NB! Exception hvis ingen eller flere resultater
@@ -74,7 +74,7 @@ public class TodoDAOUsingJPA implements TodoDAO {
 		
 		try {
 			TypedQuery<Todo> query = em.createQuery(
-					"select t from Todo t where t.tekst like :tekst", Todo.class);
+					"select t from Todo as t where t.tekst like :tekst", Todo.class);
 			query.setParameter("tekst", tekst);
 
 			return query.getResultList(); // NB! Tom liste hvis ingen resultat

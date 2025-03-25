@@ -23,4 +23,9 @@ VALUES
     (1002, 'Atle Patle'),
     (1003, 'Donald Duck');
 
+
+
+-- Spørring:
+
+SET search_path TO forelesning2_person;
 SELECT * FROM person;

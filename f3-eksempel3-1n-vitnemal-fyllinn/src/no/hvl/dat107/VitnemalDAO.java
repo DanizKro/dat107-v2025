@@ -1,11 +1,13 @@
 package no.hvl.dat107;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
@@ -14,18 +16,20 @@ public class VitnemalDAO {
     private EntityManagerFactory emf;
 
     public VitnemalDAO() {
-        emf = Persistence.createEntityManagerFactory("vitnemalPU",
-		Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
+        emf = Persistence.createEntityManagerFactory("vitnemalPU"); 
+        // //Passoret står i persistance.XML		
+		//Map.of("jakarta.persistence.jdbc.password", "12Tusenfryd"));
     }
     
     /* --------------------------------------------------------------------- */
 
-    public /*TODO*/void hentVitnemalForStudent(/*TODO*/) {
+    public Vitnemal hentVitnemalForStudent(int studnr) {
         
         EntityManager em = emf.createEntityManager();
+        
         try {
         	
-        	/*TODO*/
+        	return em.find(Vitnemal.class, studnr);
         	
         } finally {
             em.close();
@@ -34,13 +38,30 @@ public class VitnemalDAO {
 
     /* --------------------------------------------------------------------- */
 
-    public /*TODO*/void hentKarakterForStudentIEmne(/*TODO*/) {
+    public Karakter hentKarakterForStudentIEmne(int studnr, String emnekode) {
         
         EntityManager em = emf.createEntityManager();
         
         try {
         	
-        	/*TODO*/
+//        	String sporring = "select k from Karakter as k" 
+//        			+ " where k.vitnemal.studnr = :studnr"
+//        			+ " and k.emnekode = :emnekode";
+        	
+        	String sporring = """
+        		    SELECT k FROM Karakter k
+        		    WHERE k.vitnemal.studnr = :studnr
+        		    AND k.emnekode = :emnekode
+        		""";
+        	
+        	TypedQuery<Karakter> query = em.createQuery(sporring, Karakter.class);
+        	query.setParameter("studnr", studnr);
+        	query.setParameter("emnekode", emnekode);
+        	
+        	return query.getSingleResult();
+        	
+        } catch(NoResultException e){
+        	return null;
         	
         } finally {
             em.close();
@@ -49,7 +70,8 @@ public class VitnemalDAO {
     
     /* --------------------------------------------------------------------- */
 
-    public /*TODO*/void registrerKarakterForStudent(/*TODO*/) {
+    public void registrerKarakterForStudent(int studNr, String emnekode,
+    		LocalDate eksDato, String bokstav) {
         
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -57,7 +79,19 @@ public class VitnemalDAO {
         try {
         	tx.begin();
         	
-        	/*TODO*/
+        	Karakter k = hentKarakterForStudentIEmne(studNr, emnekode);	//Ditached
+        	Vitnemal v = em.find(Vitnemal.class, studNr);				//Managed
+        	
+        	if(k != null) {
+        		v.fjernKarakter(k);
+        		k = em.merge(k);										//Må få K til å peke på Managed objekt
+        		em.remove(k);
+        	}
+        	
+        	Karakter nyK = new Karakter(emnekode, eksDato, bokstav, v);
+        	em.persist(nyK);
+        	
+        	v.leggTilKarakter(nyK);
         	
         	tx.commit();
         	

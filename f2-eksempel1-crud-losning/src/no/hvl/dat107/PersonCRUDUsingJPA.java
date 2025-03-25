@@ -16,8 +16,10 @@ public class PersonCRUDUsingJPA implements PersonCRUD {
 	/* Konstruktør */
 	public PersonCRUDUsingJPA() {
 		emf = Persistence.createEntityManagerFactory("personPersistenceUnit", 
-				Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
+				Map.of("jakarta.persistence.jdbc.password", passord));
 	}
+	
+	
 	
 	@Override
 	public void lagrePerson(Person p) {
@@ -143,4 +145,11 @@ public class PersonCRUDUsingJPA implements PersonCRUD {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	String passord = "12Tusenfryd";
 }

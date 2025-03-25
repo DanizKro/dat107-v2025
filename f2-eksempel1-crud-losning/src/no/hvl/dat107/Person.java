@@ -7,7 +7,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(schema = "forelesning2_person")
-@NamedQuery(name = "hentAllePersoner", query ="select p from Person as p order by p.id")
+// @NamedQuery(name = "hentAllePersoner", query ="select p from Person as p order by p.id")
 public class Person {
 	
 	@Id	private Integer id;

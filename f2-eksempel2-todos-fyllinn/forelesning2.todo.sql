@@ -13,7 +13,7 @@ SET search_path TO forelesning2_todo;
 CREATE TABLE todo
 (
     id INTEGER PRIMARY KEY,
-    tekst VARCHAR NOT NULL
+    tekst VARCHAR(30) NOT NULL
 );
 
 INSERT INTO
