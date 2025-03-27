@@ -1,9 +1,9 @@
 -- SQL for todoliste-eksemplet gjennomgått i timen onsdag 26. mars 2025 
 
-DROP SCHEMA IF EXISTS forelesning4_todoliste CASCADE;
-CREATE SCHEMA forelesning4_todoliste;
-SET search_path TO forelesning4_todoliste;
-    
+DROP SCHEMA IF EXISTS forelesning5_todoliste CASCADE;
+CREATE SCHEMA forelesning5_todoliste;
+SET search_path TO forelesning5_todoliste;
+
 CREATE TABLE todoliste
 (
     id		SERIAL PRIMARY KEY,

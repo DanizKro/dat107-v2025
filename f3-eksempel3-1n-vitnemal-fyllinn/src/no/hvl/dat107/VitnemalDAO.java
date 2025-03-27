@@ -74,7 +74,7 @@ public class VitnemalDAO {
     		LocalDate eksDato, String bokstav) {
         
         EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+        EntityTransaction tx = em.getTransaction();		//Starte en transaksjon fordi vi skal oppdatere en kolonne
         
         try {
         	tx.begin();

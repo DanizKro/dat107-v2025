@@ -14,16 +14,16 @@ public class TodolisteDAO {
 	private EntityManagerFactory emf;
 
 	public TodolisteDAO() {
-		emf = Persistence.createEntityManagerFactory("todosPU",
-				Map.of("jakarta.persistence.jdbc.password", Passwords.AZURE_PASSWORD));
+		emf = Persistence.createEntityManagerFactory("todosPU");
 
 	}
 
 	public Todoliste hentListe(int id) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			return null; //TODO Fyll inn manglende kode for å hente liste
-
+			
+			return em.find(Todoliste.class, id);
+			
 		} finally {
 			em.close();
 		}
@@ -34,7 +34,9 @@ public class TodolisteDAO {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
-			//TODO Fyll inn manglende kode for å lagre ny liste
+			
+			em.persist(nyListe);
+						
 			tx.commit();
 
 		} catch (Throwable e) {
@@ -50,7 +52,7 @@ public class TodolisteDAO {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
-			//TODO Fyll inn manglende kode for å oppdatere liste
+			em.merge(oppdatertListe);
 			tx.commit();
 
 		} catch (Throwable e) {

@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(schema = "forelesning4_todoliste")
+@Table(schema = "forelesning5_todoliste")
 public class Todo {
 
     @Id
@@ -20,7 +20,7 @@ public class Todo {
     private String tekst;
     
     @ManyToOne
-    @JoinColumn(name="listeid")
+    @JoinColumn(name="listeid")			//Peker til der man har fremmednøkkel
     private Todoliste liste;
     
     public Todo() {}

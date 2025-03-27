@@ -29,52 +29,52 @@ public class Main {
         System.out.println(todolisteDAO.hentListe(husarbeid.getId()));
         
         pauseOgSjekkDatabasen("\nSjekk at vi har fått oppdatert databasen riktig.");
-        
-        /* ----------------------------------------------------------------- */
-        
-        System.out.println("\n\nEndrer navn,\n  fjerner [Vaske Opp],\n  legger til "
-        		+ "[Vaske vinduer],\n  endrer støvsuging-tekst til 'Gøy støvsuging'"
-        		+ " og oppdaterer ...");
-
-        Todo vaskeVinduer = new Todo("Vaske vinduer");
-
-        husarbeid.setNavn("Gøy husarbeid");
-        husarbeid.fjern(vaskeOpp);         
-        husarbeid.leggTil(vaskeVinduer);   
-        stovsuge.setTekst("Gøy støvsuging");
-       
-        todolisteDAO.oppdaterListe(husarbeid);
-        
-        System.out.println("Etter oppdaterListe():");
-        System.out.println(todolisteDAO.hentListe(husarbeid.getId()));
-        
-		pauseOgSjekkDatabasen("\nSjekk at vi har fått oppdatert databasen riktig.");
-        
-        /* ----------------------------------------------------------------- */
-        
-        System.out.println("\n\nSøker opp listen på navn ...");
-        
-        System.out.println("Etter hentListeMedNavn(\"Gøy husarbeid\")");
-        System.out.println(todolisteDAO.hentListeMedNavn("Gøy husarbeid"));
-        
-        /* ----------------------------------------------------------------- */
-        
-        System.out.println("\n\nHvis kun enveis forhold, finne todos med JPQL ...");
-        
-        System.out.println("Etter hentTodosIListe(husarbeid.getListeId())");
-        System.out.println(todolisteDAO.hentListAvTodosFraListe(husarbeid.getId()));
-       
-        /* ----------------------------------------------------------------- */
-        
-        System.out.println("\n\nSletter listen ...");
-        
-        todolisteDAO.slettListe(husarbeid.getId());
-        System.out.println("Etter slettListe()");
-        System.out.println(todolisteDAO.hentListe(husarbeid.getId()));
-        
-        pauseOgSjekkDatabasen("\nSjekk at vi har fått oppdatert databasen riktig.");
-        
-        System.out.println("Programmet er ferdig! :)");
+//        
+//        /* ----------------------------------------------------------------- */
+//        
+//        System.out.println("\n\nEndrer navn,\n  fjerner [Vaske Opp],\n  legger til "
+//        		+ "[Vaske vinduer],\n  endrer støvsuging-tekst til 'Gøy støvsuging'"
+//        		+ " og oppdaterer ...");
+//
+//        Todo vaskeVinduer = new Todo("Vaske vinduer");
+//
+//        husarbeid.setNavn("Gøy husarbeid");
+//        husarbeid.fjern(vaskeOpp);         
+//        husarbeid.leggTil(vaskeVinduer);   
+//        stovsuge.setTekst("Gøy støvsuging");
+//       
+//        todolisteDAO.oppdaterListe(husarbeid);
+//        
+//        System.out.println("Etter oppdaterListe():");
+//        System.out.println(todolisteDAO.hentListe(husarbeid.getId()));
+//        
+//		pauseOgSjekkDatabasen("\nSjekk at vi har fått oppdatert databasen riktig.");
+//        
+//        /* ----------------------------------------------------------------- */
+//        
+//        System.out.println("\n\nSøker opp listen på navn ...");
+//        
+//        System.out.println("Etter hentListeMedNavn(\"Gøy husarbeid\")");
+//        System.out.println(todolisteDAO.hentListeMedNavn("Gøy husarbeid"));
+//        
+//        /* ----------------------------------------------------------------- */
+//        
+//        System.out.println("\n\nHvis kun enveis forhold, finne todos med JPQL ...");
+//        
+//        System.out.println("Etter hentTodosIListe(husarbeid.getListeId())");
+//        System.out.println(todolisteDAO.hentListAvTodosFraListe(husarbeid.getId()));
+//       
+//        /* ----------------------------------------------------------------- */
+//        
+//        System.out.println("\n\nSletter listen ...");
+//        
+//        todolisteDAO.slettListe(husarbeid.getId());
+//        System.out.println("Etter slettListe()");
+//        System.out.println(todolisteDAO.hentListe(husarbeid.getId()));
+//        
+//        pauseOgSjekkDatabasen("\nSjekk at vi har fått oppdatert databasen riktig.");
+//        
+//        System.out.println("Programmet er ferdig! :)");
     }
     
     /* ----------------------------------------------------------------- */
