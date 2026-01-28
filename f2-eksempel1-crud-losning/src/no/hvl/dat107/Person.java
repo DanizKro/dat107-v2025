@@ -2,24 +2,23 @@ package no.hvl.dat107;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(schema = "forelesning2_person")
 // @NamedQuery(name = "hentAllePersoner", query ="select p from Person as p order by p.id")
 public class Person {
-	
+
 	@Id	private Integer id;
 	private String navn;
-	
+
 	public Person() {}
-	
+
 	public Person(Integer id, String navn) {
 		this.id = id;
 		this.navn = navn;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -32,7 +31,7 @@ public class Person {
 	public void setNavn(String navn) {
 		this.navn = navn;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("Person: id=%d, navn=%s", id, navn);
